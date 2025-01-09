@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --screen-color: #008080;
+  --surface-color: #ffffff;
+  --surface-color-secondary: #adadad;
+
+  /* --bg-color: #c0c0c0;
+  --bg-accent-color: #ffffff;
+  --accent-color: #000080;
+  --text-color-primary: #000000;
+  --text-color-secondary: #ffffff; */
+}
+
+/* 
+Привет. Придумай мне названия для переменных. Чтобы было лучшее понимание. Это интерфейс в стиле windiws 95
+1. Фон для всего экрана. Что то типо заставки
+2. Фон для элементов (Например внутри input и n.д)
+*/
+
+/* 
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+@layer base {
+  input {
+    @apply focus:outline-none;
+  }
+
+  .default-shadow {
+    @apply;
+  }
+
+  .card-border {
+    border: 2px solid;
+    border-color: #848584 #fefefe #fefefe #848584;
+    border-bottom-width: 1px;
+    box-shadow: inset 2px 2px 0 0 #0a0a0a, inset -2px -2px 0 0 #aaaaaa,
+      inset 2px 2px 0 0 #aaaaaa, inset -2px -2px 0 0 #0a0a0a;
+  }
+
+  .card-border-secondary {
+    border: 2px solid;
+    border-color: #848584 #0a0a0a #0a0a0a #848584;
+    border-bottom-width: 1px;
+    box-shadow: #fefefe 1px 1px 0px 1px inset, #848584 -1px -1px 0px 1px inset;
+  }
+}
