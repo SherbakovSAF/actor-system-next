@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils.lib";
 import { usePathname, useRouter } from "next/navigation";
 

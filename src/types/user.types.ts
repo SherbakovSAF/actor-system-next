@@ -1,3 +1,3 @@
-export interface User_I {
-  id: number;
-}
+import { User_M } from "@prisma/client";
+
+export type UserMinDTO_I = Omit<User_M, "password" | "updatedAt">;
