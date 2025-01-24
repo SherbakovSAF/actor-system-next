@@ -1,50 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
   --screen-color: #008080;
   --surface-color: #ffffff;
   --surface-color-secondary: #adadad;
-
-  /* --bg-color: #c0c0c0;
-  --bg-accent-color: #ffffff;
   --accent-color: #000080;
   --text-color-primary: #000000;
-  --text-color-secondary: #ffffff; */
+  --text-color-secondary: #ffffff;
+  --text-color-disabled: #808080;
+  --error-color: #8b0000;
 }
-
-/* 
-Привет. Придумай мне названия для переменных. Чтобы было лучшее понимание. Это интерфейс в стиле windiws 95
-1. Фон для всего экрана. Что то типо заставки
-2. Фон для элементов (Например внутри input и n.д)
-*/
-
-/* 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-} */
 
 @layer base {
-  input {
+  * {
+    scroll-behavior: smooth;
+  }
+  input,
+  textarea {
     @apply focus:outline-none;
   }
 
-  .default-shadow {
-    @apply;
+  .outline-action {
+    @apply outline-dashed outline-1 -outline-offset-[0.25rem];
   }
 
   .card-border {
