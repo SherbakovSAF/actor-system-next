@@ -9,15 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
     "@prisma/client": "^6.2.1",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
+    "jose": "^5.9.6",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^2.6.0"
+    "react-hook-form": "^7.54.2",
+    "tailwind-merge": "^2.6.0",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
