@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User_M {
+  id           Int     @id @unique @default(autoincrement())
+  password     String
+  mail         String? @default("")
+  isVerifyMail Boolean @default(false)
+  name         String? @default("")
+  quote        String? @default("")
+  avatar       String? @default("")
+  nickName     String? @unique @default("")
+  isApprove    Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  refreshes Refresh_M[]
+  actor     Actor_M?
+
+  @@map("users")
+}
+
+model Refresh_M {
+  id    Int     @id @unique @default(autoincrement())
+  token String  @unique @default("")
+  agent String? @default("")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId Int
+  user   User_M @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("refresh")
+}
+
+model Cinematic_M {
+  id          Int       @id @unique @default(autoincrement())
+  title       String    @default("")
+  description String?   @default("")
+  startAt     DateTime
+  endAt       DateTime?
+  countSheet  Int       @default(1)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  cinematicMember CinematicMember_M[]
+
+  @@map("cinematics")
+}
+
+model CinematicMember_M {
+  id            Int     @id @unique @default(autoincrement())
+  actorId       Int
+  cinematicId   Int
+  isPromiseCome Boolean @default(false)
+  wasHours      Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  actor     Actor_M     @relation(fields: [actorId], references: [id], onDelete: Cascade)
+  cinematic Cinematic_M @relation(fields: [cinematicId], references: [id], onDelete: Cascade)
+
+  @@map("cinematic_members")
+}
+
+model Actor_M {
+  id        Int @id @unique @default(autoincrement())
+  userId    Int @unique
+  lvl       Int @default(1)
+  points    Int @default(0)
+  countWarn Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user            User_M              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cinematicMember CinematicMember_M[]
+
+  @@map("actors")
+}
