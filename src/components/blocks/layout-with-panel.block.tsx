@@ -1,6 +1,5 @@
-"use client";
 import { cn } from "@/lib/utils.lib";
-import { signOutService } from "@/services/auth.service";
+import ControlPanelBlock from "@/components/modules/control-panel.module";
 
 interface LayoutWithPanelProps extends React.PropsWithChildren {
   hasPanel?: boolean;
@@ -22,7 +21,7 @@ const LayoutWithPanelBlock: React.FC<LayoutWithPanelProps> = ({
         </div>
       </div>
 
-      {hasPanel && <div onClick={() => signOutService()}>Панель</div>}
+      {hasPanel && <ControlPanelBlock />}
     </>
   );
 };
