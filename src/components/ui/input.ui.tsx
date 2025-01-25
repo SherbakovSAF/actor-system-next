@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils.lib";
 import { useState } from "react";
 import LoadingUi from "@/components/ui/loading.ui";

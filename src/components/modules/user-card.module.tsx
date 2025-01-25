@@ -1,3 +1,5 @@
+"use client";
+
 import { User_M } from "@prisma/client";
 import ButtonUI from "@/components/ui/button.ui";
 import { UserMinDTO_I } from "@/types/user.types";
