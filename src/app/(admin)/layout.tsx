@@ -1,4 +1,4 @@
-import ControlPanelBlock from "@/components/blocks/control-panel.block";
+import LayoutWithPanelBlock from "@/components/blocks/layout-with-panel.block";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,13 +7,7 @@ export const metadata: Metadata = {
 };
 
 const AdminLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 overflow-auto">{children}</div>
-
-      <ControlPanelBlock />
-    </div>
-  );
+  return <LayoutWithPanelBlock>{children}</LayoutWithPanelBlock>;
 };
 
 export default AdminLayout;
