@@ -1,9 +1,10 @@
 "use client";
 
-import { User_M } from "@prisma/client";
-import ButtonUI from "@/components/ui/button.ui";
-import { UserMinDTO_I } from "@/types/user.types";
 import CardBlock from "@/components/blocks/card.block";
+import ButtonUI from "@/components/ui/button.ui";
+import { createActorService } from "@/services/actor.service";
+import { UserMinDTO_I } from "@/types/user.types";
+import { User_M } from "@prisma/client";
 
 interface UserCardBlockProps {
   user: User_M | UserMinDTO_I;
@@ -14,6 +15,7 @@ const UserCardModule: React.FC<UserCardBlockProps> = ({
   user,
   forAdmin = false,
 }) => {
+  const handleCreateActor = () => createActorService({ userId: user.id });
   return (
     <CardBlock title={user.nickName ?? ""}>
       <ul>
@@ -23,9 +25,7 @@ const UserCardModule: React.FC<UserCardBlockProps> = ({
         <li>{user.mail}</li>
       </ul>
       {forAdmin && (
-        <ButtonUI onClick={() => console.log("Сделать актёром")}>
-          Сделать актёром
-        </ButtonUI>
+        <ButtonUI onClick={() => handleCreateActor()}>Сделать актёром</ButtonUI>
       )}
     </CardBlock>
   );
