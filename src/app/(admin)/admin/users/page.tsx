@@ -11,7 +11,7 @@ const AdminPageUsers = async () => {
       <h1>Пользователи</h1>
       <div className="grid grid-cols-3 gap-4">
         {users.map((user) => (
-          <UserCardModule key={user.id} user={user} />
+          <UserCardModule key={user.id} user={user} forAdmin />
         ))}
       </div>
     </main>
