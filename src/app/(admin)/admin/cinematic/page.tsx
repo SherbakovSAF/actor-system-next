@@ -6,7 +6,6 @@ import { getAllCinematics } from "@/services/cinematic.service";
 
 const AdminCinematicPage = async () => {
   const cinematics = await getAllCinematics().catch(() => null);
-  console.log("Вот тут ответ", cinematics);
   if (!cinematics) return <div>Ошибка</div>;
 
   return (
