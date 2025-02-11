@@ -215,7 +215,7 @@ const RightTitleSlots: React.FC<RightTitleSlotsProps> = ({
 
   const handleEditCinematic = (cinematic: CinematicWithUsers_DTO) => {
     setSetupCinematic_S(cinematic);
-    console.log(document.getElementById("scroll"));
+
     document.getElementById("scroll")?.scrollTo({ top: 0 });
   };
 

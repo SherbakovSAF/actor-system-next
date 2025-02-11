@@ -4,7 +4,8 @@ export type ResponseConstants_T =
   | "UNAUTHORIZED"
   | "FORBIDDEN"
   | "OK"
-  | "CREATED";
+  | "CREATED"
+  | "NOT_FOUND_NOTIFICATION";
 
 export class HandlerResponse<T = unknown> {
   private constResponse: ResponseConstants_T;
@@ -22,6 +23,7 @@ export class HandlerResponse<T = unknown> {
       case "FORBIDDEN":
         return 403;
       case "NOT_FOUND":
+      case "NOT_FOUND_NOTIFICATION":
         return 404;
       case "BAD_REQUEST":
         return 400;
