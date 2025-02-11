@@ -8,10 +8,15 @@ import { getCookieValue } from "@/lib/cookies-handler.lib";
 export const middleware = async (request: NextRequest) => {
   // Получаем access токен
   const accessToken = request.cookies.get(CookiesName.AccessToken)?.value;
-  const token = await getPayloadJWTToken(accessToken ?? "");
+  const parsedAccessToken = await getPayloadJWTToken(accessToken ?? "").catch(
+    () => null
+  );
 
   // Перебрасываем на NotFound, чтобы пользователь не переходил на auth авторизированным
-  if (token && request.nextUrl.pathname.startsWith(RoutePath_E.AUTH))
+  if (
+    parsedAccessToken &&
+    request.nextUrl.pathname.startsWith(RoutePath_E.AUTH)
+  )
     return NextResponse.rewrite(new URL(RoutePath_E.NOT_FOUND, request.url));
 
   // Доп проверка, чтобы избежать множества переадресаций
@@ -19,13 +24,16 @@ export const middleware = async (request: NextRequest) => {
     return NextResponse.next();
 
   // Если просто есть токен и идёт на не Auth, то добро пожаловать
-  if (token) return NextResponse.next();
+  if (parsedAccessToken) return NextResponse.next();
 
   // Если же токена нет, то смотрим, есть ли refresh
   const refreshToken = request.cookies.get(CookiesName.RefreshToken)?.value;
+  const parsedRefreshToken = await getPayloadJWTToken(refreshToken ?? "").catch(
+    () => null
+  );
 
   // Refresh нет - будь добр авторизуйся
-  if (!refreshToken)
+  if (!parsedRefreshToken)
     return NextResponse.redirect(new URL(RoutePath_E.AUTH, request.url));
   const userAgent = request.headers.get("user-agent") || "unknown";
 
