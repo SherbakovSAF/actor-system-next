@@ -13,8 +13,11 @@ import SettingsPic from "@/assets/img/settings.jpg";
 import TurnOffPic from "@/assets/img/turn-off.png";
 import { cn } from "@/lib/utils.lib";
 import { PosDetail_T } from "@/types/general.types";
+import usePushNotification from "@/pwa/usePushNotification";
 
 const ControlPanelBlock = () => {
+  const { subscription, unsubscribeFromPush, subscribeToPush } =
+    usePushNotification();
   return (
     <div className="flex justify-between items-center w-full bg-surface-secondary ">
       <ul className="flex">
@@ -32,6 +35,11 @@ const ControlPanelBlock = () => {
         </li>
         <ContextMenu routeChildren={routes} isFirstItem position="top-start" />
       </ul>
+      {subscription ? (
+        <button onClick={unsubscribeFromPush}>Unsubscribe</button>
+      ) : (
+        <button onClick={subscribeToPush}>Subscribe</button>
+      )}
     </div>
   );
 };

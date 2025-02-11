@@ -37,7 +37,7 @@ defaultApi.interceptors.request.use(
 defaultApi.interceptors.response.use(
   (response: AxiosResponse) => response.data,
   // TODO: Возможно стоит убрать .response.data, но ведь там есть константы и default ошибки, поэтому надо удедиться
-  (error) => Promise.reject(error.response.data.constError)
+  (error) => Promise.reject(error.response?.data?.constResponse)
 );
 
 export const callApi = async <T>(
